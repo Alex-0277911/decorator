@@ -1,0 +1,42 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "dart_decorator::dart_decorator.dart::Weather" {
+  +String getDescription()
+  +double getTemperature()
+}
+
+class "dart_decorator::dart_decorator.dart::CurrentWeather" {
+  -String _description
+  -double _temperature
+  +String getDescription()
+  +double getTemperature()
+}
+
+"dart_decorator::dart_decorator.dart::Weather" <|-- "dart_decorator::dart_decorator.dart::CurrentWeather"
+
+class "dart_decorator::dart_decorator.dart::WeatherDecorator" {
+  -Weather _weather
+  +String getDescription()
+  +double getTemperature()
+}
+
+"dart_decorator::dart_decorator.dart::WeatherDecorator" o-- "dart_decorator::dart_decorator.dart::Weather"
+"dart_decorator::dart_decorator.dart::Weather" <|-- "dart_decorator::dart_decorator.dart::WeatherDecorator"
+
+class "dart_decorator::dart_decorator.dart::FahrenheitDecorator" {
+  +String getDescription()
+  +double getTemperature()
+}
+
+"dart_decorator::dart_decorator.dart::WeatherDecorator" <|-- "dart_decorator::dart_decorator.dart::FahrenheitDecorator"
+
+class "dart_decorator::dart_decorator.dart::HumidityDecorator" {
+  +String getDescription()
+  +String getHumidity()
+}
+
+"dart_decorator::dart_decorator.dart::WeatherDecorator" <|-- "dart_decorator::dart_decorator.dart::HumidityDecorator"
+
+
+@enduml
